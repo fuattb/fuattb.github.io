@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Bilgisayar</title>
+    <script type="text/javascript">
+        document.title = "Bilgisayar";
+    </script>
+    <meta charset="utf-8">
+</head>
+<body>
+    <form id="form1">
+	<input type="file" id="files" name="files[]" multiple />
+    <table>
+	<tr>
+	<td id="icerik">
+		<!--<select ID="DropDownList1">-->
+			<script>
+				function handleFileSelect(evt) 
+				{
+					var files = evt.target.files;
+					var dizi = [];
+					for (var i = 0, f; f = files[i]; i++) 
+					{
+					  dizi.push(escape(f.name));
+					}
+					var newSelect=document.createElement("select");
+					newSelect.setAttribute("id","DropDownList1");
+					var index=0;
+					for(element in dizi)
+					{
+						var opt = document.createElement("option");
+						opt.value= dizi[index];
+						opt.innerHTML = dizi[index]; // whatever property it has
+						// then append it to the select element
+						newSelect.appendChild(opt);
+						index++;
+					}
+					var bolum = document.getElementById("icerik");
+					bolum.appendChild(newSelect);
+				}
+				document.getElementById('files').addEventListener('change', handleFileSelect, false);
+				//var dizi=["seç1","seç2","seç2","seç2","seç2"];
+			</script>
+		<!--</select>-->
+    </td>
+    <td>
+		<input type="button" onclick="GetXml()" value="Göster" />
+		<input type="button" onclick="GetAllXml()" value="Hepsini Göster" />
+	</td>
+	</tr>
+	<tr>
+	<td colspan="2" id="sonuc">
+	.
+	</td></tr></table>
+    </form>
+	    <script type="text/javascript">
+        function GetXml() {
+            document.getElementById("sonuc").innerHTML = "";
+            var myloc = window.location.href;
+            var b = myloc.lastIndexOf("/");
+            myloc = myloc.slice(0, b + 1);
+            myloc += "03-LAB_XML/";
+            //document.write(myloc);
+            //var locarray = myloc.split("/");
+            //delete locarray[(locarray.length - 1)];
+            //var arraytext = locarray.join("/");
+            if (window.XMLHttpRequest)
+			{
+                //yeni tarayıcılarda xml dosyasını bu şekilde import edebiliriz
+                var httpObj = new XMLHttpRequest();
+            }
+			else
+			{
+                //internet explorer'ın bazı eski sürümlerine destek verebilmek için bu şekilde
+                httpObj = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //xml dosyamızın adı.
+            var dosya = "03-LAB_XML/";
+            var liste = document.getElementById("DropDownList1");
+            dosya += liste.options[liste.selectedIndex].text;
+			alert(dosya);
+            var pcname = liste.options[liste.selectedIndex].text;
+            pcname = pcname.slice(0, -4);
+            var tablo = dosya;
+            tablo += "<br/>";
+            //tablo += dosya;
+            httpObj.open("GET", dosya, false);
+            httpObj.send();
+			
+            var xmlDocument = httpObj.responseXML;
+            //xml dosyamızın içinde hani verileri okumak istiyorsak onun ismini veriyoruz "book"
+            var xmlEl = xmlDocument.getElementsByTagName("section");
+
+            tablo += "<table border='1'><tr>";
+            tablo += "<td align='center' width='25'>0</td><td>";
+            //----------------------------------------------------
+            tablo += "Bilgisayar Adı</td><td>";
+            //tablo += xmlEl[183].childNodes[1].getAttribute("value");
+            tablo += pcname;
+            tablo += "</td></tr>";
+            //----------------------------------------------------
+
+            for (i = 0; i < 8; i++) {
+                tablo += "<tr><td align='center'>" + (i + 1) + "</td><td>";
+                tablo += xmlEl[i].getAttribute("title");
+                tablo += "</td><td>";
+                for (j = 0; j < xmlEl[i].childNodes.length; j++) {
+                    if (xmlEl[i].childNodes[j].nodeType != 1) {
+                        continue;
+                    }
+                    //ekranda popup olarak yazdır
+                    tablo += xmlEl[i].childNodes[j].getAttribute("title") + "<br/>";
+                }
+                tablo += "</td></tr>";
+            }
+            tablo += "</table>";
+            document.getElementById("sonuc").innerHTML = tablo;
+            /*
+            document.write("<h1>.</h1>");
+            document.write("<h1>.</h1>");
+            document.write("<h1>.</h1>");
+            document.write("<table border='1'>");
+            //kaç tane "section" nesnesi varsa
+            for (i = 0; i < xmlEl.length; i++)
+            {
+            document.write("<tr><td>"+i+"</td><td>");
+            document.write(xmlEl[i].getAttribute("title"));
+            for (j = 0; j < xmlEl[i].childNodes.length; j++)
+            {
+            if (xmlEl[i].childNodes[j].nodeType != 1) 
+            {
+            continue;
+            }
+            //ekranda popup olarak yazdır
+            document.write("</td><td>");
+            document.write(xmlEl[i].childNodes[j].getAttribute("title"));
+            }
+            document.write("</td></tr>");
+            }
+            document.write("</table>");
+            */
+        }
+        function GetAllXml() {
+            document.getElementById("sonuc").innerHTML = "";
+            //var myloc = window.location.href;
+            //var b = myloc.lastIndexOf("/");
+            //myloc = myloc.slice(0, b + 1);
+            //myloc += "03-LAB_XML/";
+            //document.write(myloc);
+            //var locarray = myloc.split("/");
+            //delete locarray[(locarray.length - 1)];
+            //var arraytext = locarray.join("/");
+
+            if (window.XMLHttpRequest) {
+                //yeni tarayıcılarda xml dosyasını bu şekilde import edebiliriz
+                var httpObj = new XMLHttpRequest();
+            } else {
+                //internet explorer'ın bazı eski sürümlerine destek verebilmek için bu şekilde
+                httpObj = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //xml dosyamızın adı.
+            //var dosya = "03-LAB_XML/";
+            var liste = document.getElementById("DropDownList1");
+            var dosya = "";
+            var pcname = "";
+            var tablo = "";
+            var xmlDocument;
+            var xmlEl;
+            for (var s = 0; s < 30; s++) {
+                tablo = "<p>";
+                dosya = "03-LAB_XML/" + liste.options[s].text;
+                pcname = liste.options[s].text;
+                pcname = pcname.slice(0, -4);
+                tablo += dosya;
+                tablo += "<br/>";
+                httpObj.open("GET", dosya, false);
+                httpObj.send();
+                xmlDocument = httpObj.responseXML;
+                xmlEl = xmlDocument.getElementsByTagName("section");
+                tablo += "<table border='1'><tr>";
+                tablo += "<td align='center' width='25'>0</td><td width='130'>";
+                tablo += "<b>Bilgisayar Adı</b></td><td width='560'>";
+                tablo += pcname;
+                tablo += "</td></tr>";
+                for (i = 0; i < 8; i++) {
+                    if (i % 2 == 1) {
+                        tablo += "<tr>";
+                    }
+                    else if (i % 2 == 0) {
+                        tablo += "<tr bgcolor='lightgray'>";  
+                    }
+                    tablo += "<td align='center'>" + (i + 1) + "</td><td><b>";
+                    tablo += xmlEl[i].getAttribute("title");
+                    tablo += "</b></td><td>";
+                    for (j = 0; j < xmlEl[i].childNodes.length; j++) {
+                        if (xmlEl[i].childNodes[j].nodeType != 1) {
+                            continue;
+                        }
+                        //ekranda popup olarak yazdır
+                        tablo += xmlEl[i].childNodes[j].getAttribute("title") + "<br/>";
+                    }
+                    tablo += "</td></tr>";
+                }
+                tablo += "</table></p>";
+                document.getElementById("sonuc").innerHTML += tablo;
+            }
+            //tablo += dosya;
+            //xml dosyamızın içinde hani verileri okumak istiyorsak onun ismini veriyoruz "book"
+            //----------------------------------------------------
+            //tablo += xmlEl[183].childNodes[1].getAttribute("value");
+            //----------------------------------------------------
+            /*
+            document.write("<h1>.</h1>");
+            document.write("<h1>.</h1>");
+            document.write("<h1>.</h1>");
+            document.write("<table border='1'>");
+            //kaç tane "section" nesnesi varsa
+            for (i = 0; i < xmlEl.length; i++)
+            {
+            document.write("<tr><td>"+i+"</td><td>");
+            document.write(xmlEl[i].getAttribute("title"));
+            for (j = 0; j < xmlEl[i].childNodes.length; j++)
+            {
+            if (xmlEl[i].childNodes[j].nodeType != 1) 
+            {
+            continue;
+            }
+            //ekranda popup olarak yazdır
+            document.write("</td><td>");
+            document.write(xmlEl[i].childNodes[j].getAttribute("title"));
+            }
+            document.write("</td></tr>");
+            }
+            document.write("</table>");
+            */
+        }
+</script>
+</body>
+</html>
