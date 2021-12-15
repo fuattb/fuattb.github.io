@@ -97,7 +97,7 @@ function graf1(dizi1,diziTu,diziSo,diziMa,diziFe)
 						'rgba(153, 102, 255, 1)',
 						'rgba(255, 159, 64, 1)'
 					],
-					borderWidth: 2
+					borderWidth: 4
 				},{
 					label: 'Sosyal',
 					data: diziSo,
@@ -117,7 +117,7 @@ function graf1(dizi1,diziTu,diziSo,diziMa,diziFe)
 						'rgba(153, 102, 255, 1)',
 						'rgba(255, 159, 64, 1)'
 					],
-					borderWidth: 2
+					borderWidth: 4
 				},{
 					label: 'Matematik',
 					data: diziMa,
@@ -137,7 +137,7 @@ function graf1(dizi1,diziTu,diziSo,diziMa,diziFe)
 						'rgba(153, 102, 255, 1)',
 						'rgba(255, 159, 64, 1)'
 					],
-					borderWidth: 2
+					borderWidth: 4
 				},{
 					label: 'Fen Bilimleri',
 					data: diziFe,
@@ -157,7 +157,7 @@ function graf1(dizi1,diziTu,diziSo,diziMa,diziFe)
 						'rgba(153, 102, 255, 1)',
 						'rgba(255, 159, 64, 1)'
 					],
-					borderWidth: 2
+					borderWidth: 4
 				}
 			]},
 		options: {
@@ -196,7 +196,7 @@ function graf2(dizi1,diziTo)
 					'rgba(255, 159, 64, 1)',
 					'rgba(255, 99, 132, 1)'
 				],
-				borderWidth: 2
+				borderWidth: 4
 			}]
 		},
 		options: {
@@ -235,7 +235,7 @@ function graf3(dizi1,puanHe)
 					'rgba(153, 102, 255, 1)',
 					'rgba(255, 99, 132, 1)'
 				],
-				borderWidth: 2
+				borderWidth: 4
 			}]
 		},
 		options: {
