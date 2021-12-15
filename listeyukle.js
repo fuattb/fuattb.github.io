@@ -16,5 +16,6 @@ for(var i = 0;i<=62*35;i+=35)
 	opt.innerHTML += xmlEl1[i].childNodes[3].childNodes[0].nodeValue;
 	newSelect.appendChild(opt);
 }
+newSelect.setAttribute("style","background-color:#4CAF50;border:none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;");
 var bolum = document.getElementById("liste");
 bolum.appendChild(newSelect);
