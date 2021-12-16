@@ -3,6 +3,20 @@ var oldcanv,canv;
 var graf1s=0;
 var netler=[],maknet=0.0,maktop=0.0,makPu=0.0;
 
+function divggostergizle(divid)
+{
+	var divim=document.getElementById(divid);
+	if(divim.style.display==="none")
+	{
+		divim.style.display="block";
+	}
+	else
+	{
+		divim.style.display="none";
+	}
+	//document.getElementById(dugme).innerHTML=
+}
+
 Array.prototype.max = function() {
   return Math.max.apply(null, this);
 };

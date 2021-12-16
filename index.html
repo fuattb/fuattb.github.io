@@ -5,16 +5,11 @@
 <script src="verioku.js"></script>
 <script src="goster.js"></script>
 <style>
-button{
-	background-color: #4CAF50; /* Green */
-	border: none;
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
+td button{
+	background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;
+	text-decoration: none;display: inline-block;font-size: 16px;
 }
+
 </style>
 <body>
 <div id="listediv"><table><tr><td id="liste"></td>
@@ -29,18 +24,18 @@ button{
 <br/>
 <div id="bilgi1">.</div>
 <br/>
-Türkçe-Sosyal-Matematik-Fen Netleri
-<div id="mc1" class="chart-container" style="position: relative; height:500; width:500; align:left; border:1px solid black;">
+<button onclick="divggostergizle('mc1')">Türkçe-Sosyal-Matematik-Fen Netleri Grafiği</button>
+<div id="mc1" class="chart-container" style="position: relative; height:500; width:500; align:left; border:1px solid black;display:none;">
 <canvas id="myChart1" width="500" height="500"></canvas>
 </div>
 <div style="position: relative; height:10; width:10; align:left;">.</div>
-Toplam Netler
-<div id="mc2" class="chart-container" style="position: relative; height:500; width:500; align:left; border:1px solid black;">
+<button onclick="divggostergizle('mc2')">Toplam Netler Grafiği</button>
+<div id="mc2" class="chart-container" style="position: relative; height:500; width:500; align:left; border:1px solid black;display:none;">
 <canvas id="myChart2" width="500" height="500"></canvas>
 </div>
 <div style="position: relative; height:10; width:10; align:left;">.</div>
-Sınavlardan Alınan Puanlar
-<div id="mc3" class="chart-container" style="position: relative; height:500; width:500; align:left; border:1px solid black;">
+<button onclick="divggostergizle('mc3')">Sınavlardan Alınan Puanlar Grafiği</button>
+<div id="mc3" class="chart-container" style="position: relative; height:500; width:500; align:left; border:1px solid black;display:none;">
 <canvas id="myChart3" width="500" height="500"></canvas>
 </div>
 
