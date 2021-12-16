@@ -1,3 +1,9 @@
+function selectNext(selid,c){
+	var select = document.getElementById(selid);
+	select.selectedIndex=select.selectedIndex+c;
+	select.dispatchEvent(new Event('change'));
+}
+
 var xmlFile="xml/veriler_20211213_template.xml";
 
 var httpObj = new XMLHttpRequest();
