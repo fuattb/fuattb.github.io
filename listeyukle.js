@@ -4,7 +4,7 @@ function selectNext(selid,c){
 	select.dispatchEvent(new Event('change'));
 }
 
-var xmlFile="xml/veriler_20211213_template.xml";
+var xmlFile="xml/veriler_20211217.xml";
 
 var httpObj = new XMLHttpRequest();
 httpObj.open("GET",xmlFile,false);

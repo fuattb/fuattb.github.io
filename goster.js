@@ -42,7 +42,7 @@ function bilgi(xml_verioku)
 	var sOgrNo=0;
 	sOgrNo=document.getElementById("DropDownList1").value;
 	var ogrNo=0, adSoyad="", sinif="", sinifsira=0, listesira=0;
-	var topP=0.0, girSinav=0, ortP=0.0, makP=0.0;
+	var topP=0.0, girSinav=0, ortP=0.0, makP=0.0, sonSinav=0;
 	var puan="",tur="",sos="",mat="",fen="",ton="";
 	for(var i=0;i<=35*62;i+=35)
 	{
@@ -74,6 +74,7 @@ function bilgi(xml_verioku)
 					matN.push(parseFloat(mat));
 					fenN.push(parseFloat(fen));
 					topN.push(parseFloat(ton));
+					sonSinav=xml_verioku[j].childNodes[4].childNodes[0].nodeValue;
 				}
 			}
 		}
@@ -92,9 +93,11 @@ function bilgi(xml_verioku)
 	if(graf1s>0){canvasRC("mc1","mc2","mc3");}
 	document.getElementById("bilgi1").innerHTML="";
 	var bilgiler="";
-	bilgiler+="<table border='1' style='border-collapse:collapse;'><tr><td>Girilen Sınav: </td><td>"+girSinav+"</td></tr>";
-	bilgiler+="<tr><td>En Yüksek Alınan Puan: </td><td>"+makP+"</td></tr>";
-	bilgiler+="<tr><td>Ortalama Puan: </td><td>"+ortP+"</td></tr>";
+	bilgiler+="<table border='1' style='border-collapse:collapse;'>";
+	bilgiler+="<tr><td>Girilen Sınav: </td><td>"+girSinav+"</td><td bgcolor='black'>.</td>";
+	bilgiler+="<td>Son Girilen Sınav: </td><td>"+sonSinav+"</td></tr>"
+	bilgiler+="<tr><td>En Yüksek Alınan Puan: </td><td>"+makP+"</td><td bgcolor='black'>.</td>";
+	bilgiler+="<td>Ortalama Puan: </td><td>"+ortP+"</td></tr></table>";
 	document.getElementById("bilgi1").innerHTML=bilgiler;
 	document.getElementById("dgraf1").innerHTML="";
 	document.getElementById("dgraf2").innerHTML="";
